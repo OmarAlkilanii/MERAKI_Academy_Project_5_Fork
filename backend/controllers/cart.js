@@ -46,14 +46,46 @@ const deleteFromCart = (req,res)=>{
           message: "Server error",
           err: err,
         });
-        console.log(err);
       });
 }
 
 //This function give the sum of prices in the cart
 /* 
-this function should take all the 
+this function should take all the carts id's and some the prices and send it to admin 
+also for new table orders 
+
+1.select to get price data from order table 
 */
+
+/* CREATE TABLE Orders (
+    id SERIAL NOT NULL,
+    user_id INT,
+    product_id INT,
+    price INT,
+    is_deleted SMALLINT DEFAULT 0,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+); */
+const checkOutFun = (req,res)=>{
+    const user_id = req.token.userId;
+    const products_ids = [];
+    
+
+    pool.query(``).then((result)=>{
+        res.status(200).json({
+            success: true,
+            message: "added to orderd",
+            result: result.rows,
+          });
+    }).catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            err: err,
+          });
+    })
+}
 
 
 module.exports = {

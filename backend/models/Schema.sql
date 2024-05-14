@@ -45,6 +45,20 @@ CREATE TABLE users
     PRIMARY KEY (id)
 );
 
+DROP TABLE Orders;
+
+CREATE TABLE Orders (
+    id SERIAL NOT NULL,
+    user_id INT,
+    product_id INT,
+    price INT,
+    is_deleted SMALLINT DEFAULT 0,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+
 DROP TABLE products;
 
 CREATE TABLE products

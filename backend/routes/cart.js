@@ -8,6 +8,6 @@ const authorization = require("../middlewares/authorization");
 const cartRouter = express.Router();
 
 cartRouter.post("/:id",authentication,addtoCart);
-cartRouter.delete("/:id",authentication,deleteFromCart)
+cartRouter.delete("/:id",authentication,deleteFromCart);
 
 module.exports = cartRouter;
